@@ -4,16 +4,17 @@
 package FFSSM;
 
 import java.time.LocalDate;
+import static java.time.temporal.ChronoUnit.DAYS;
 
-public class Licence {
+public class Licence implements Comparable {
 
-    public Personne possesseur;
+    private Personne possesseur;
 
-    public String numero;
+    private String numero;
 
-    public LocalDate delivrance;
+    private LocalDate delivrance;
 
-    public Club club;
+    private Club club;
 
     public Licence(Personne possesseur, String numero, LocalDate delivrance, Club club) {
         this.possesseur = possesseur;
@@ -45,8 +46,12 @@ public class Licence {
      * @return vrai si valide à la date d
      **/
     public boolean estValide(LocalDate d) {
-         // TODO: Implémenter cette méthode
-        throw new UnsupportedOperationException("Pas encore implémenté");
+        return DAYS.between(delivrance, d) < 365;
+    }
+
+    @Override
+    public int compareTo(Object o) {
+        return delivrance.compareTo(((Licence) o).getDelivrance());
     }
 
 }
