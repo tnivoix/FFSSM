@@ -27,7 +27,7 @@ public class Moniteur extends Plongeur {
     public Optional<Club> employeurActuel() {
         Club c = null;
         for(Embauche e : embauches){
-            if(e.estTerminee()){
+            if(!e.estTerminee()){
                 c=e.getEmployeur();
             }
         }
